@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+# import shab
 import matplotlib.pyplot as plt
 
 # ==============================
@@ -206,15 +207,15 @@ if st.sidebar.button("🔍 Analyser ce client",
     st.divider()
 
     # SHAP — Explication
-    st.subheader("🔍 Pourquoi ce score ?")
-    explainer   = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(df_client)
+    # st.subheader("🔍 Pourquoi ce score ?")
+    # explainer   = shap.TreeExplainer(model)
+    # shap_values = explainer.shap_values(df_client)
 
-    fig, ax = plt.subplots(figsize=(10, 4))
-    shap.plots.waterfall(
-        explainer(df_client)[0],
-        max_display=10,
-        show=False
-    )
-    st.pyplot(fig)
-    plt.close()
+    # fig, ax = plt.subplots(figsize=(10, 4))
+    # shap.plots.waterfall(
+        #explainer(df_client)[0],
+        #max_display=10,
+        #show=False
+    #)
+    #st.pyplot(fig)
+    #plt.close()
