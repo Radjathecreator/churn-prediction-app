@@ -19,9 +19,9 @@ st.set_page_config(
 # ==============================
 @st.cache_resource
 def load_model():
-    model   = joblib.load('model/churn_model.pkl')
-    scaler  = joblib.load('model/scaler.pkl')
-    columns = joblib.load('model/columns.pkl')
+    model   = joblib.load('churn_model.pkl')
+    scaler  = joblib.load('scaler.pkl')
+    columns = joblib.load('columns.pkl')
     return model, scaler, columns
 
 model, scaler, columns = load_model()
