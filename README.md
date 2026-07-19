@@ -28,8 +28,7 @@ L'application est divisée en deux onglets principaux :
 *   **Déploiement :** Streamlit Community Cloud (ou autre, à préciser)
 
 ## 📊 Source des données
-Le modèle a été entraîné sur le célèbre jeu de données Telco Customer Churn disponible sur Kaggle.
-Lien : https://www.kaggle.com/datasets/blastchar/telco-customer-churn
+Le modèle a été entraîné sur le célèbre jeu de données [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) disponible sur Kaggle.
 
 ## Auteur
 Radja Kurniawan - Data Analyst / Data Scientist - [Linkedin](https://www.linkedin.com/in/radjakurniawan/)
