@@ -12,6 +12,8 @@ L'application est divisée en deux onglets principaux :
 
 <img width="1808" height="850" alt="image" src="https://github.com/user-attachments/assets/746db726-e489-4e93-821e-94011ee6ffd6" />
 <img width="1781" height="660" alt="image" src="https://github.com/user-attachments/assets/073cb2ae-192d-403a-b432-e511cdfbbff4" />
+<img width="1779" height="852" alt="image" src="https://github.com/user-attachments/assets/3fac5d94-9f43-4a12-b075-a38a3cc30520" />
+
 
 
 
@@ -35,3 +37,10 @@ churn-prediction-app/
 ├── mock_clients.csv       # Fichier CSV d'exemple pour tester l'application
 ├── Projet_Churn.ipynb     # Notebook Jupyter contenant l'analyse exploratoire et l'entraînement
 └── requirements.txt       # Liste des dépendances Python
+
+## 📊 Source des données
+Le modèle a été entraîné sur le célèbre jeu de données Telco Customer Churn disponible sur Kaggle.
+Lien : https://www.kaggle.com/datasets/blastchar/telco-customer-churn
+
+## Auteur
+Radja Kurniawan - Data Analyst / Data Scientist - [Lien vers ton profil LinkedIn]
