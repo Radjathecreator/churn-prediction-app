@@ -10,8 +10,8 @@ L'application est divisée en deux onglets principaux :
 *   **👤 Profil individuel :** Saisie manuelle des informations d'un client via un formulaire interactif pour obtenir un score de risque en temps réel et des recommandations d'actions.
 *   **📂 Analyse par lot (*Batch*) :** Importation d'un fichier CSV contenant une base de clients. L'application génère un tableau de bord global et permet d'exporter les prédictions (clients à risque élevé, modéré ou faible).
 
-*   <img width="1808" height="850" alt="image" src="https://github.com/user-attachments/assets/746db726-e489-4e93-821e-94011ee6ffd6" />
-*   <img width="1781" height="660" alt="image" src="https://github.com/user-attachments/assets/073cb2ae-192d-403a-b432-e511cdfbbff4" />
+<img width="1808" height="850" alt="image" src="https://github.com/user-attachments/assets/746db726-e489-4e93-821e-94011ee6ffd6" />
+<img width="1781" height="660" alt="image" src="https://github.com/user-attachments/assets/073cb2ae-192d-403a-b432-e511cdfbbff4" />
 
 
 
