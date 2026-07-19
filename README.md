@@ -1,5 +1,7 @@
 # 📡 Churn Predictor App - Télécom
 
+Lien vers le projet : https://churn-prediction-app-lupxwgrsbdlsutvggpzfsz.streamlit.app/
+
 Une application web interactive développée avec [Streamlit](https://streamlit.io/) permettant de prédire le risque de désabonnement (*churn*) des clients d'une entreprise de télécommunications. 
 
 Ce projet s'appuie sur un modèle de Machine Learning (XGBoost) entraîné pour identifier les clients à risque afin d'optimiser les campagnes de rétention.
@@ -30,7 +32,7 @@ Le modèle a été entraîné sur le célèbre jeu de données Telco Customer Ch
 Lien : https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 
 ## Auteur
-Radja Kurniawan - Data Analyst / Data Scientist - [Lien vers ton profil LinkedIn]
+Radja Kurniawan - Data Analyst / Data Scientist - https://www.linkedin.com/in/radjakurniawan/
 
 ## 📁 Structure du Projet
 
