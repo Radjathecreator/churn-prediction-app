@@ -288,7 +288,7 @@ with tab2:
         csv_mock_data = template.to_csv(index=False)
 
     st.download_button(
-        label="📥 Télécharger un fichier d'exemple (CSV)",
+        label="📥 Télécharger le template CSV",
         data=csv_mock_data,
         file_name="mock_clients.csv",
         mime="text/csv",
