@@ -25,6 +25,13 @@ L'application est divisée en deux onglets principaux :
 *   **Machine Learning :** Scikit-Learn, XGBoost
 *   **Déploiement :** Streamlit Community Cloud (ou autre, à préciser)
 
+## 📊 Source des données
+Le modèle a été entraîné sur le célèbre jeu de données Telco Customer Churn disponible sur Kaggle.
+Lien : https://www.kaggle.com/datasets/blastchar/telco-customer-churn
+
+## Auteur
+Radja Kurniawan - Data Analyst / Data Scientist - [Lien vers ton profil LinkedIn]
+
 ## 📁 Structure du Projet
 
 ```text
@@ -38,9 +45,4 @@ churn-prediction-app/
 ├── Projet_Churn.ipynb     # Notebook Jupyter contenant l'analyse exploratoire et l'entraînement
 └── requirements.txt       # Liste des dépendances Python
 
-## 📊 Source des données
-Le modèle a été entraîné sur le célèbre jeu de données Telco Customer Churn disponible sur Kaggle.
-Lien : https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 
-## Auteur
-Radja Kurniawan - Data Analyst / Data Scientist - [Lien vers ton profil LinkedIn]
