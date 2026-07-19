@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 # CONFIG PAGE
 st.set_page_config(
@@ -139,20 +140,19 @@ def categorie_risque(score):
 # HEADER
 # ==============================
 st.title("📡 Churn Predictor — Télécom")
-st.markdown("Prédisez le risque de départ de vos clients.")
+st.markdown("Prédisez le risque de départ de vos clients pour mieux les fidéliser.")
 st.divider()
 
 # ==============================
 # ONGLETS
 # ==============================
-tab1, tab2 = st.tabs(["👤 Client individuel", "📂 Analyse en masse"])
+tab1, tab2 = st.tabs(["👤 Profil individuel", "📂 Analyse par lot"])
 
 # ==============================
 # ONGLET 1 — CLIENT INDIVIDUEL
 # ==============================
-#test
 with tab1:
-    st.info("👈 Remplissez les informations client dans la sidebar puis cliquez sur Analyser")
+    st.info("👈 Remplissez les informations du client dans le menu latéral puis cliquez sur Analyser.")
     
 with tab1:
     with st.sidebar:
@@ -198,7 +198,7 @@ with tab1:
         monthly_charges  = st.slider("Charges mensuelles (USD)", 18, 118, 65)
         total_charges    = st.slider("Charges totales (USD)", 0, 8500, 1500)
 
-        analyser = st.button("🔍 Analyser ce client",
+        analyser = st.button("🔍 Analyser ce profil",
                              use_container_width=True,
                              type="primary")
 
@@ -215,12 +215,13 @@ with tab1:
         proba = model.predict_proba(df_client)[0][1] * 100
 
         col1, col2, col3 = st.columns(3)
-
-        #test
-        col1, col2, col3 = st.columns(3)
         col1.metric("Modèle", "XGBoost V3")
         col2.metric("AUC-ROC", "82.57%")
         col3.metric("Recall Churners", "66.31%")
+        
+        st.divider()
+
+        col1, col2, col3 = st.columns(3)
 
         with col1:
             st.metric("Score de risque", f"{proba:.1f}%")
@@ -263,46 +264,54 @@ with tab1:
             """)
 
 # ==============================
-# ONGLET 2 — ANALYSE EN MASSE
+# ONGLET 2 — ANALYSE PAR LOT
 # ==============================
 with tab2:
-    st.subheader("📂 Analyse en masse")
-    st.markdown("Uploadez un fichier CSV avec vos clients — format identique au dataset Telco.")
+    st.subheader("📂 Analyse par lot")
+    st.markdown("Importez un fichier CSV contenant votre base de clients. Le format des colonnes doit être identique aux données Telco d'origine.")
 
-    # Template à télécharger
-    template = pd.DataFrame(columns=[
-        'customerID', 'gender', 'SeniorCitizen', 'Partner',
-        'Dependents', 'tenure', 'PhoneService', 'MultipleLines',
-        'InternetService', 'OnlineSecurity', 'OnlineBackup',
-        'DeviceProtection', 'TechSupport', 'StreamingTV',
-        'StreamingMovies', 'Contract', 'PaperlessBilling',
-        'PaymentMethod', 'MonthlyCharges', 'TotalCharges'
-    ])
+    # Chargement dynamique du fichier mock (si disponible) au lieu d'un DataFrame vide
+    csv_mock_data = ""
+    if os.path.exists("mock_clients.csv"):
+        mock_df = pd.read_csv("mock_clients.csv")
+        csv_mock_data = mock_df.to_csv(index=False)
+    else:
+        # Fallback si le fichier n'est pas trouvé
+        template = pd.DataFrame(columns=[
+            'customerID', 'gender', 'SeniorCitizen', 'Partner',
+            'Dependents', 'tenure', 'PhoneService', 'MultipleLines',
+            'InternetService', 'OnlineSecurity', 'OnlineBackup',
+            'DeviceProtection', 'TechSupport', 'StreamingTV',
+            'StreamingMovies', 'Contract', 'PaperlessBilling',
+            'PaymentMethod', 'MonthlyCharges', 'TotalCharges'
+        ])
+        csv_mock_data = template.to_csv(index=False)
 
     st.download_button(
-        label="📥 Télécharger le template CSV",
-        data=template.to_csv(index=False),
-        file_name="template_clients.csv",
-        mime="text/csv"
+        label="📥 Télécharger un fichier d'exemple (CSV)",
+        data=csv_mock_data,
+        file_name="mock_clients.csv",
+        mime="text/csv",
+        help="Téléchargez ce fichier d'essai pré-rempli pour tester l'application."
     )
 
     st.divider()
 
     # Upload fichier
     uploaded_file = st.file_uploader(
-        "Importer votre fichier CSV",
+        "Déposez votre fichier client (CSV)",
         type=['csv']
     )
 
     if uploaded_file is not None:
         df_raw = pd.read_csv(uploaded_file)
 
-        st.success(f"✅ {len(df_raw)} clients importés")
+        st.success(f"✅ {len(df_raw)} clients importés avec succès.")
         st.dataframe(df_raw.head(), use_container_width=True)
 
-        if st.button("🚀 Lancer l'analyse", type="primary"):
+        if st.button("🚀 Lancer les prédictions", type="primary"):
 
-            with st.spinner("Analyse en cours..."):
+            with st.spinner("Analyse des profils en cours..."):
 
                 # Garder customerID pour affichage
                 ids = df_raw['customerID'] if 'customerID' in df_raw.columns \
@@ -323,7 +332,7 @@ with tab2:
             st.divider()
 
             # Dashboard récapitulatif
-            st.subheader("📊 Dashboard récapitulatif")
+            st.subheader("📊 Tableau de bord global")
 
             col1, col2, col3, col4 = st.columns(4)
 
@@ -345,16 +354,16 @@ with tab2:
                           f"{faible} clients",
                           f"{faible/len(probas)*100:.1f}%")
             with col4:
-                st.metric("📈 Score moyen",
+                st.metric("📈 Score de churn moyen",
                           f"{moyenne:.1f}%")
 
             st.divider()
 
             # Filtre par catégorie
-            st.subheader("🔍 Résultats détaillés")
+            st.subheader("🔍 Explorer les résultats détaillés")
 
             filtre = st.selectbox(
-                "Filtrer par catégorie",
+                "Filtrer par niveau de risque",
                 ["Tous", "🔴 Risque élevé",
                  "🟡 Risque modéré", "🟢 Faible risque"]
             )
@@ -365,12 +374,12 @@ with tab2:
                 df_affiche = resultats
 
             st.dataframe(df_affiche, use_container_width=True)
-            st.markdown(f"**{len(df_affiche)} clients affichés**")
+            st.markdown(f"**{len(df_affiche)} profil(s) affiché(s)**")
 
             st.divider()
 
             # Top 10 clients les plus à risque
-            st.subheader("🚨 Top 10 clients les plus à risque")
+            st.subheader("🚨 Top 10 clients prioritaires (Risque maximum)")
             st.dataframe(
                 resultats.head(10),
                 use_container_width=True
@@ -379,20 +388,20 @@ with tab2:
             st.divider()
 
             # Export
-            st.subheader("📥 Exporter les résultats")
+            st.subheader("📥 Exporter le rapport")
 
             st.download_button(
-                label="📥 Télécharger tous les résultats (CSV)",
+                label="📥 Exporter tous les résultats (CSV)",
                 data=resultats.to_csv(index=False),
-                file_name="resultats_churn.csv",
+                file_name="resultats_churn_complets.csv",
                 mime="text/csv"
             )
 
             st.download_button(
-                label="🔴 Télécharger risque élevé uniquement",
+                label="🔴 Exporter uniquement les clients à 'Risque élevé'",
                 data=resultats[resultats['Catégorie']=='🔴 Risque élevé']\
                      .to_csv(index=False),
-                file_name="clients_risque_eleve.csv",
+                file_name="clients_risque_eleve_prioritaires.csv",
                 mime="text/csv"
             )
 
