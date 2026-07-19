@@ -150,6 +150,10 @@ tab1, tab2 = st.tabs(["👤 Client individuel", "📂 Analyse en masse"])
 # ==============================
 # ONGLET 1 — CLIENT INDIVIDUEL
 # ==============================
+#test
+with tab1:
+    st.info("👈 Remplissez les informations client dans la sidebar puis cliquez sur Analyser")
+    
 with tab1:
     with st.sidebar:
         st.header("👤 Informations client")
@@ -211,6 +215,12 @@ with tab1:
         proba = model.predict_proba(df_client)[0][1] * 100
 
         col1, col2, col3 = st.columns(3)
+
+        #test
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Modèle", "XGBoost V3")
+        col2.metric("AUC-ROC", "82.57%")
+        col3.metric("Recall Churners", "66.31%")
 
         with col1:
             st.metric("Score de risque", f"{proba:.1f}%")
@@ -385,3 +395,11 @@ with tab2:
                 file_name="clients_risque_eleve.csv",
                 mime="text/csv"
             )
+
+#footer
+st.divider()
+st.markdown("""
+<div style='text-align: center; color: grey; font-size: 12px;'>
+Churn Predictor — Modèle XGBoost V3 | AUC-ROC 82.57% | Radja Kurniawan
+</div>
+""", unsafe_allow_html=True)
