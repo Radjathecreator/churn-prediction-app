@@ -1,6 +1,6 @@
 # 📡 Churn Predictor App - Télécom
 
-Lien vers le projet : https://churn-prediction-app-lupxwgrsbdlsutvggpzfsz.streamlit.app/
+Lien vers l'application : https://churn-prediction-app-lupxwgrsbdlsutvggpzfsz.streamlit.app/
 
 Une application web interactive développée avec [Streamlit](https://streamlit.io/) permettant de prédire le risque de désabonnement (*churn*) des clients d'une entreprise de télécommunications. 
 
